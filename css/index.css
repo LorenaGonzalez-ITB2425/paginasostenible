@@ -1,0 +1,528 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: url('../img/gatocursor.png'), auto; /* Aplica el cursor PNG personalizado */
+    overflow-y: scroll; /* Siempre muestra la barra de desplazamiento vertical */
+}
+
+body.light-mode {
+    background-color: #fff;
+    color: #333;
+}
+
+body.dark-mode {
+    background-color: #000000;
+    color: #fff;
+}
+
+/* Centrando el contenido dentro de .energy-consumption y .water-consumption */
+.energy-consumption,
+.water-consumption {
+    margin: 0 auto; /* Centra el contenido horizontalmente */
+    padding: 20px;
+    max-width: 900px; /* Máximo ancho para evitar que el contenido sea demasiado ancho */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centra el texto dentro de las secciones */
+}
+
+/* Estilos de los encabezados */
+.energy-consumption h2,
+.water-consumption h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Estilos de las imágenes dentro de las secciones */
+.energy-consumption .section-image,
+.water-consumption .section-image {
+    display: block; /* Para asegurar que la imagen sea un bloque y se centre */
+    margin: 20px auto; /* Centra la imagen */
+    width: 30%; /* Ajusta el tamaño según sea necesario */
+}
+
+.energy-consumption .section-icon,
+.water-consumption .section-icon {
+    display: block;
+    margin: 0 auto 10px;
+    width: 5%;
+}
+
+/* Ajuste del contenido en la tabla */
+.table-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+/* Para las listas de acciones */
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+/* Para los elementos de lista */
+li {
+    margin-bottom: 10px;
+}
+
+/* Mejorando el espaciado entre las secciones */
+.energy-consumption > *:not(.table-section),
+.water-consumption > *:not(.table-section) {
+    margin-bottom: 20px;
+}
+
+/* Estilos para el botón flotante */
+.faq-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.faq-btn img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* Estilos para el área de chat */
+.faq-chat {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: none; /* Inicialmente oculto */
+    flex-direction: column;
+    z-index: 999;
+    overflow: hidden;
+}
+
+/* Cabecera del chat */
+.faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+}
+
+/* Estilo para cerrar el chat */
+.close-chat {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Área para los mensajes del chat */
+.faq-messages {
+    padding: 10px;
+    overflow-y: auto;
+    flex: 1;
+    max-height: 250px;
+}
+
+/* Estilo de las preguntas/respuestas del chat */
+.faq-message {
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.faq-message.user {
+    background-color: #3498db;
+    color: white;
+    align-self: flex-end;
+}
+
+.faq-message.bot {
+    background-color: #ecf0f1;
+    color: #333;
+    align-self: flex-start;
+}
+
+/* Estilo para el input del chat */
+.faq-input {
+    display: flex;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.faq-input input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.faq-input button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos para los botones de preguntas */
+.faq-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.faq-button:hover {
+    background-color: #2980b9;
+}
+
+.faq-button:focus {
+    outline: none;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    position: fixed;
+    left: -250px;
+    top: 0;
+    bottom: 0;
+    transition: left 0.3s;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.2); /* Sombreado en el borde */
+    border-top-left-radius: 15px;  /* Redondeo de la esquina superior izquierda */
+    border-bottom-left-radius: 15px; /* Redondeo de la esquina inferior izquierda */
+}
+
+/* Estilos del menú en modo claro */
+body.light-mode .sidebar {
+    background-color: #fff;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1); /* Sombreado suave en modo claro */
+}
+
+body.light-mode .sidebar ul li a {
+    color: #333;
+}
+
+/* Estilos del menú en modo oscuro */
+body.dark-mode .sidebar {
+    background-color: #222;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5); /* Sombreado más marcado en modo oscuro */
+}
+
+body.dark-mode .sidebar ul li a {
+    color: #fff;
+}
+
+/* Puntos del menú con bordes redondeados */
+.sidebar ul li a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    border-radius: 25px; /* Bordes redondeados */
+    text-align: center;
+    margin: 5px 0;
+    transition: background-color 0.3s;
+    cursor: url('../img/gatocursor.png'), auto; /* Aplica el cursor PNG personalizado */
+}
+
+.sidebar ul li a:hover {
+    background-color: #9b59b6; /* Color morado claro al pasar el ratón */
+}
+
+/* Submenú */
+.submenu {
+    list-style: none;
+    display: none; /* Ocultar submenú por defecto */
+    padding-left: 0;  /* Eliminamos el padding extra */
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Mostrar submenú */
+.submenu.show {
+    display: block; /* Mostrar submenú */
+}
+
+/* Subpuntos del submenú */
+.submenu li a {
+    padding: 10px 20px;
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.submenu li a:hover {
+    background-color: #9b59b6; /* Color morado claro al pasar el ratón */
+}
+
+/* Estilo para el cursor personalizado */
+.custom-cursor {
+    cursor: url('../img/gatocursor.png'), auto; /* Aplica el cursor PNG personalizado */
+}
+
+/* Contenedor del blog */
+.blog-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 10% 0 10%;
+    padding: 20px;
+}
+
+/* Blog item */
+.blog-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.blog-item .text {
+    flex: 1;
+    padding-right: 20px;
+    max-width: 70%;
+}
+
+.blog-item .image {
+    flex: 0 0 300px;
+    position: relative;
+    margin-top: 20px;
+}
+
+/* Imagen del blog */
+.blog-item .image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.blog-item .image img:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos para modo claro/oscuro en blog */
+body.light-mode .blog-item .text {
+    color: #333;
+}
+
+body.dark-mode .blog-item .text {
+    color: #fff;
+}
+
+body.light-mode .blog-item .image img {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .blog-item .image img {
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Botón para abrir el menú lateral */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    background-color: transparent;
+    color: #333;
+    border: none;
+    cursor: url('../img/gatocursor.png'), auto;
+    z-index: 10;
+}
+
+/* Botón para cambiar el modo claro/oscuro */
+.mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    color: #333;
+    font-size: 24px;
+    border: none;
+    cursor: url('../img/gatocursor.png'), auto;
+    z-index: 10;
+}
+
+/* Estilos para la notificación emergente */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00ff15;
+    color: #333;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 9999;
+    display: none; /* Oculto por defecto */
+}
+
+
+.notification.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Estilos para el contenido principal */
+.content {
+    margin-left: 0;
+    padding: 20px;
+    width: 100%;
+    transition: margin-left 0.3s;
+    padding-top: 80px;
+}
+
+/* Estilos para la pantalla de carga */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro con opacidad */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté encima de todo el contenido */
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+/* Spinner (rueda giratoria) */
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animación de giro */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Ocultar la pantalla de carga después de la carga */
+.loader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Estilo para las imágenes que aparecerán aleatoriamente y se moverán */
+.loader .images-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    pointer-events: none; /* Para no interferir con la interacción de los elementos */
+}
+
+.loader .images-container img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    animation: moveImage 10s infinite;
+    transition: opacity 0.5s ease-out;
+}
+
+/* Animación para mover las imágenes aleatoriamente */
+@keyframes moveImage {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-200px, -200px); }
+    50% { transform: translate(200px, 200px); }
+    75% { transform: translate(-150px, 150px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Estilos para los elementos de consumo eléctrico y de agua */
+body.light-mode .energy-consumption,
+body.light-mode .water-consumption {
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+body.dark-mode .energy-consumption,
+body.dark-mode .water-consumption {
+    background-color: #2f2f2f;
+    color: #fff;
+}
+
+.energy-consumption,
+.water-consumption {
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.energy-consumption h2,
+.water-consumption h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.energy-consumption .value,
+.water-consumption .value {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Contenido principal */
+.content {
+    margin-left: 100px; /* Ajusta el margen izquierdo para mover el contenido más a la izquierda */
+    padding: 20px;
+    width: calc(100% - 150px); /* Ajusta el ancho del contenido */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    text-align: center; /* Centra el texto */
+    transition: margin-left 0.3s;
+    padding-top: 80px;

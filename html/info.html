@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Desplegable Lateral</title>
+    <link rel="stylesheet" href="../css/info.css">
+</head>
+<body class="light-mode">
+
+    <div id="menu" class="sidebar">
+        <div class="logo">
+            <img src="../img/logoitb.png" alt="Logo">
+        </div>
+        <ul>
+            <li><a href="./index.html">Inicio</a></li>
+            <li id="menu-point-2">
+                <a href="javascript:void(0)">Consumos</a>
+                <!-- Submenú desplegable a la derecha -->
+                <ul class="submenu">
+                    <li><a href="./consuma.html">Agua</a></li>
+                    <li><a href="./consumc.html">Consumibles</a></li>
+                    <li><a href="./consume.html">Electrico</a></li>
+                    <li><a href="./consump.html">Producto</a></li>
+                </ul>
+            </li>
+            <li><a href="./info.html">Infografía</a></li>
+            <li><a href="./maobra.html">Mano De Obra</a></li>
+        </ul>
+    </div>
+
+    <div id="main-content" class="content">
+        <h1>INFOGRAFIES</h1>
+        <p>Pla de sostenibilitad basat en els ASG</p>
+
+        <!-- Sección 1 con texto e imagen -->
+        <div class="section">
+            <h2>Sector Informàtic</h2>
+            <img src="../img/inf.png" alt="Imagen 1" class="section-image">
+        </div>
+
+        <!-- Sección 2 con texto e imagen -->
+        <div class="section">
+            <h2>Tractament de residus</h2>
+            <p>Es important tenir en compte la classificació i la gestió de residus per facilitzar la seva recuperació i reutilització</p>
+            <img src="../img/coche.png" alt="Imagen 2" class="section-image">
+        </div>
+    </div>
+
+    <button id="toggle-btn" class="toggle-btn">☰</button>
+    <button id="mode-toggle" class="mode-toggle">🌙</button>
+
+    <script src="../js/info.js"></script>
+</body>
+</html>

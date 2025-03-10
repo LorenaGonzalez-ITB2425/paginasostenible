@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Consumo Eléctrico</title>
+    <link rel="stylesheet" href="../css/consumo.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+</head>
+
+<body class="light-mode">
+
+    <!-- Menú lateral -->
+    <div id="menu" class="sidebar">
+        <div class="logo">
+            <img src="../img/logoitb.png" alt="Logo">
+        </div>
+        <ul>
+            <li><a href="./index.html">Inicio</a></li>
+            <li id="menu-point-2">
+                <a href="./consumo.html">Consumos</a>
+            </li>
+            <li><a href="./info.html">Infografía</a></li>
+            <li><a href="./maobra.html">Mano De Obra</a></li>
+        </ul>
+    </div>
+
+    <!-- Botones de control -->
+    <div class="buttons-container">
+        <button id="toggle-btn" class="toggle-btn">☰</button>
+        <button id="mode-toggle" class="mode-toggle">🌙</button>
+
+        <!-- Botón para añadir CSV -->
+        <button id="btn-aniadir-csv">Añadir CSV</button>
+        
+        <!-- Botón para cargar el CSV -->
+        <button id="btn-cargar-csv">Cargar CSV</button>
+        
+        <!-- Input para cargar el archivo CSV (invisible por defecto) -->
+        <input type="file" id="cargar-csv" class="cargar-csv" accept=".csv" style="display: none;">
+        
+        <!-- Mostrar el estado del CSV cargado -->
+        <p id="csv-status"></p>
+    </div>
+
+    <!-- Calculadora de Predicciones -->
+    <div class="container">
+        <h1>Predicciones de Consumo</h1>
+
+        <!-- Selector de Periodo de Predicción -->
+        <div class="input-group">
+            <label for="periodo-prediccion">Periodo de Predicción:</label>
+            <select id="periodo-prediccion">
+                <option value="proximoAnio">Próximo Año</option>
+                <option value="proximoCurso">Próximo Curso</option>
+                <option value="personalizado">Personalizado</option>
+            </select>
+        </div>
+
+        <div id="contenedor-periodo-personalizado" class="input-group" style="display:none;">
+            <label for="fecha-inicio">Fecha de Inicio:</label>
+            <input type="date" id="fecha-inicio">
+            <label for="fecha-fin">Fecha de Fin:</label>
+            <input type="date" id="fecha-fin">
+        </div>
+
+        <button id="boton-calcular" class="action-btn">Calcular Predicciones</button>
+        <button id="exportar-pdf" class="action-btn">Exportar PDF</button>
+
+        <!-- Predicciones -->
+        <div id="predicciones">
+            <p>Electricidad: <span id="prediccion-electricidad">0</span> kWh</p>
+            <p>Agua: <span id="prediccion-agua">0</span> m³</p>
+            <p>Oficina: <span id="prediccion-oficina">0</span> €/mes</p>
+            <p>Limpieza: <span id="prediccion-limpieza">0</span> €/mes</p>
+        </div>
+
+        <!-- Gráficos -->
+        <div class="charts-container">
+            <canvas id="grafico-electricidad"></canvas>
+            <canvas id="grafico-agua"></canvas>
+        </div>
+    </div>
+
+    <script src="../js/consumo.js"></script>
+
+</body>
+
+</html>

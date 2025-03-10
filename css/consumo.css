@@ -1,0 +1,302 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Colores de fondo para modo claro y oscuro */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: url('../img/gatocursor.png'), auto; /* Aplica el cursor PNG personalizado */
+    position: relative; /* Para los botones fijos en las esquinas */
+}
+
+/* Fondo de página con imagen y opacidad */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../img/consume.jpeg');
+    background-size: cover;
+    background-position: center;
+    filter: opacity(0.5); /* Aplica el filtro de opacidad */
+    z-index: -1;
+}
+
+/* Modo claro */
+body.light-mode {
+    background-color: #fff;
+    color: #333;
+}
+
+body.light-mode .container {
+    background-color: #fff;
+    color: #333;
+}
+
+body.light-mode .sidebar {
+    background-color: #fff;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1); /* Sombreado suave en modo claro */
+}
+
+body.light-mode .sidebar ul li a {
+    color: #333;
+}
+
+body.light-mode .blog-item .text {
+    color: #333;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+    background-color: #000;
+    color: #fff;
+}
+
+body.dark-mode .container {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode .sidebar {
+    background-color: #222;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5); /* Sombreado más marcado en modo oscuro */
+}
+
+body.dark-mode .sidebar ul li a {
+    color: #fff;
+}
+
+body.dark-mode .blog-item .text {
+    color: #fff;
+}
+
+body.dark-mode .blog-item .image img {
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    position: fixed;
+    left: -250px;
+    top: 0;
+    bottom: 0;
+    transition: left 0.3s;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.2); /* Sombreado en el borde */
+    border-top-left-radius: 15px;  /* Redondeo de la esquina superior izquierda */
+    border-bottom-left-radius: 15px; /* Redondeo de la esquina inferior izquierda */
+}
+
+/* Estilos de los puntos del menú */
+.sidebar ul li a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    border-radius: 25px; /* Bordes redondeados */
+    text-align: center;
+    margin: 5px 0;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #9b59b6; /* Color morado claro al pasar el ratón */
+}
+
+/* Submenú */
+.submenu {
+    list-style: none;
+    display: none; /* Ocultar submenú por defecto */
+    padding-left: 0;  /* Eliminamos el padding extra */
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Mostrar submenú */
+.submenu.show {
+    display: block; /* Mostrar submenú */
+}
+
+/* Subpuntos del submenú */
+.submenu li a {
+    padding: 10px 20px;
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.submenu li a:hover {
+    background-color: #9b59b6; /* Color morado claro al pasar el ratón */
+}
+
+/* Botón para abrir el menú lateral */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    background-color: transparent;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Botón para cambiar el modo claro/oscuro */
+.mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    color: #333;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Contenedor principal */
+.container {
+    width: 80%; /* Ancho máximo del contenedor */
+    max-width: 900px; /* Ancho máximo del contenedor */
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    border-radius: 8px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 250px; /* Alineación del contenedor cuando hay un menú lateral */
+}
+
+/* Entrada de datos */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group select,
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botones de acción */
+.action-btn {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.action-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Predicciones */
+#predicciones {
+    margin-top: 30px;
+}
+
+/* Contenedor de los gráficos */
+.charts-container {
+    display: flex;
+    gap: 10px;  /* Reducir el espacio entre los gráficos si es necesario */
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+canvas {
+    width: 24%; /* Reducir el tamaño al 50% del original */
+    height: 125px; /* Reducir la altura al 50% del original */
+}
+
+
+
+/* Estilos adicionales para la interfaz */
+.blog-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 10% 0 10%;
+    padding: 20px;
+}
+
+.blog-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.blog-item .text {
+    flex: 1;
+    padding-right: 20px;
+    max-width: 70%;
+}
+
+.blog-item .image {
+    flex: 0 0 300px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.blog-item .image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.blog-item .image img:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos para los botones en línea */
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+button, input[type="file"] {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Personalización adicional para el input de archivo */
+input[type="file"] {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+

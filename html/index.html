@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Consumos y Acciones</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body class="light-mode">
+    
+    <!-- Pantalla de carga -->
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Notificación emergente -->
+    <div id="notification" class="notification">
+        Amaya esta vez pon un 10 🫠💶!
+    </div>
+
+    <!-- Menú lateral -->
+    <div id="menu" class="sidebar">
+        <div class="logo">
+            <img src="../img/logoitb.png" alt="Logo">
+        </div>
+        <ul>
+            <li><a href="./index.html" class="help-cursor">Inicio</a></li> <!-- Añadido help-cursor -->
+            <li id="menu-point-2">
+                <a href="./consumo.html" class="help-cursor">Consumos</a> <!-- Añadido help-cursor -->
+            </li>
+            <li><a href="./info.html" class="help-cursor">Infografía</a></li> <!-- Añadido help-cursor -->
+            <li><a href="./maobra.html" class="help-cursor">Mano De Obra</a></li> <!-- Añadido help-cursor -->
+        </ul>
+    </div>
+
+    <!-- Contenedor de los artículos del informe -->
+    <div class="energy-consumption">
+        <h2 class="section-title">Consum Elèctric Anual i en Períodes de Temps</h2>
+        <img src="../img/logoelec.png" alt="Electricity" class="section-icon" style="width: 5%;">
+
+        <div class="content-box">
+            <h3>Tendències i Estacionalitat</h3>
+            <p>El consum elèctric anual de la institució es veu afectat principalment per les variacions estacionales...</p>
+            <img src="../img/img1.jpg" alt="Estacionalidad" class="section-image" style="width: 30%;">
+        </div>
+
+        <div class="table-section">
+            <h3>Setembre - Desembre (Climatització i Activitats Acadèmiques)</h3>
+            <p>El consum mensual oscil·la entre 12.000 - 15.000 kWh.</p>
+            <p>Cost mensual estimat:</p>
+            <ul>
+                <li>Mínim: 12.000 kWh x 0,20 €/kWh = 2.400 €</li>
+                <li>Màxim: 15.000 kWh x 0,20 €/kWh = 3.000 €</li>
+            </ul>
+            <p>Cost total anual per aquest període (3 mesos):</p>
+            <ul>
+                <li>Mínim: 9.600 €</li>
+                <li>Màxim: 12.000 €</li>
+            </ul>
+        </div>
+
+        <h3>Accions per Reduir el Consum Elèctric</h3>
+        <ul>
+            <li>Instal·lació de bateries d'emmagatzematge: Augmentar l’autoconsum del 25% al 40-50%.</li>
+            <li>Manteniment preventiu dels inversors: Evitar pèrdues energètiques...</li>
+            <li>Sensibilització de la comunitat educativa: Reduir el consum durant horaris no lectius.</li>
+        </ul>
+
+        <div class="water-consumption">
+            <h2 class="section-title">Consum d’Aigua Anual i en Períodes de Temps</h2>
+            <img src="../img/logoagua.png" alt="Water" class="section-icon" style="width: 5%;">
+
+            <h3>Tendències i Estacionalitat en el Consum d’Aigua</h3>
+            <p>El consum d’aigua també presenta variacions significatives a llarg de l'any...</p>
+            <img src="../img/electricidadimg.jpg" alt="Estacionalidad Aigua" class="section-image" style="width: 30%;">
+
+            <div class="table-section">
+                <h3>Hivern (Desembre - Febrer)</h3>
+                <p>Consum entre setmana: 8.000L/dia</p>
+                <p>Consum durant el cap de setmana: 5.000L/dia</p>
+                <p>Consum mensual total: 208.000L</p>
+            </div>
+            
+            <h3>Accions per Reduir el Consum d’Aigua</h3>
+            <ul>
+                <li>Instal·lació de sistemes de recollida d’aigua de pluja...</li>
+                <li>Millorar el manteniment de les instal·lacions per evitar fuites.</li>
+                <li>Ús de tecnologies d’estalvi d’aigua...</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Botones de toggle -->
+    <button id="toggle-btn" class="toggle-btn">☰</button>
+    <button id="mode-toggle" class="mode-toggle">🌙</button>
+
+    <!-- Botón flotante de preguntas frecuentes -->
+    <button id="faq-btn" class="faq-btn">
+        <img src="../img/preguntasfreq.png" alt="FAQ" />
+    </button>
+
+    <!-- Área de chat de preguntas frecuentes -->
+    <div id="faq-chat" class="faq-chat">
+        <div class="faq-header">
+            <h3>Preguntas Frecuentes</h3>
+            <button id="close-chat" class="close-chat">✖</button>
+        </div>
+        <div class="faq-messages">
+            <!-- Botones de preguntas predefinidas -->
+            <button class="faq-button">¿Cómo puedo cambiar el modo de la página?</button>
+            <button class="faq-button">¿Qué es este sitio?</button>
+            <button class="faq-button">¿Cómo contacto al soporte?</button>
+            <!-- Mensajes del chat aparecerán aquí -->
+        </div>
+        <div class="faq-input">
+            <input type="text" id="faq-input" placeholder="Escribe tu pregunta..." />
+            <button id="send-btn">Enviar</button>
+        </div>
+    </div>
+
+    <script src="../js/index.js"></script>
+    <script>
+        // Funcionalidad para mover el chat FAQ
+        let faqChat = document.getElementById("faq-chat");
+        let faqHeader = document.querySelector(".faq-header");
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        faqHeader.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            offsetX = e.clientX - faqChat.offsetLeft;
+            offsetY = e.clientY - faqChat.offsetTop;
+            faqChat.style.transition = "none"; // Desactivar la transición mientras arrastras
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            if (isDragging) {
+                faqChat.style.left = `${e.clientX - offsetX}px`;
+                faqChat.style.top = `${e.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener("mouseup", () => {
+            isDragging = false;
+            faqChat.style.transition = "all 0.3s ease"; // Reactivar la transición cuando ya no estás arrastrando
+        });
+
+        // Funcionalidad para manejar las preguntas predeterminadas
+        let faqButtons = document.querySelectorAll(".faq-button");
+
+        faqButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                let userQuestion = button.textContent;
+                let botAnswer = getBotAnswer(userQuestion);
+
+                // Crear un mensaje del usuario
+                let userMessage = document.createElement("div");
+                userMessage.classList.add("faq-message", "user");
+                userMessage.textContent = userQuestion;
+                document.querySelector(".faq-messages").appendChild(userMessage);
+
+                // Crear la respuesta del bot
+                let botMessage = document.createElement("div");
+                botMessage.classList.add("faq-message", "bot");
+                botMessage.textContent = botAnswer;
+                document.querySelector(".faq-messages").appendChild(botMessage);
+
+                // Hacer scroll al final del chat
+                let messages = document.querySelector(".faq-messages");
+                messages.scrollTop = messages.scrollHeight;
+            });
+        });
+
+        // Función que devuelve la respuesta del bot basada en la pregunta
+        function getBotAnswer(question) {
+            const answers = {
+                "¿Cómo puedo cambiar el modo de la página?": "Puedes cambiar el modo claro/oscuro haciendo clic en el ícono de la luna 🌙 en la esquina superior derecha.",
+                "¿Qué es este sitio?": "Este sitio es una demostración de cómo usar menús, chats interactivos y más en una página web.",
+                "¿Cómo contacto al soporte?": "Puedes contactar al soporte a través de nuestro correo electrónico: soporte@ejemplo.com",
+            };
+
+            return answers[question] || "Lo siento, no entiendo tu pregunta.";
+        }
+    </script>
+</body>
+</html>
